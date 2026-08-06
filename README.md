@@ -34,4 +34,4 @@ sudo xattr -cr /Applications/ClipHistory.app
 
 ## License
 
-This project is distributed and provided under the terms specified in the [LICENSE](https://github.com/Neko-hey/ClipHistory/blob/main/LICENSE) file
+This project is distributed and provided under the terms specified in the [LICENSE](https://github.com/Neko-hey/ClipHistory/tree/main?tab=MIT-1-ov-file) file
