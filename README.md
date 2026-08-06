@@ -7,7 +7,6 @@ ClipHistory is a lightweight clipboard history manager for macOS
 ## Key Features
 
 * Automatically saves and manages clipboard history
-* Quick access right from the macOS menu bar
 * Lightweight and simple design
 * Press ⌘ + B to display the menu
 
