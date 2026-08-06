@@ -276,7 +276,7 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
 @implementation w1
 
 - (void)applicationDidFinishLaunching:(NSNotification *)k2 {
-    [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 
     self.y1 = new a();
 
