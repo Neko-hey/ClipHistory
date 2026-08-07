@@ -67,7 +67,7 @@ public:
 
 - (instancetype)init {
     self = [super initWithContentRect:NSMakeRect(0, 0, 250, 200)
-                            styleMask:NSWindowStyleMaskBorderless
+                            styleMask:NSWindowStyleMaskNonactivatingPanel
                               backing:NSBackingStoreBuffered
                                 defer:NO];
     if (self) {
@@ -75,6 +75,7 @@ public:
         [self setBackgroundColor:[NSColor clearColor]];
         [self setLevel:NSScreenSaverWindowLevel];
         [self setHasShadow:YES];
+        [self setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorTransient];
 
         NSVisualEffectView* t = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, 250, 200)];
         t.material = NSVisualEffectMaterialHUDWindow;
@@ -187,7 +188,9 @@ public:
     NSPoint r1 = NSMakePoint(h1.x, q1 - h1.y - self.frame.size.height);
 
     [self setFrameOrigin:r1];
+
     [NSApp activateIgnoringOtherApps:YES];
+    [self orderFrontRegardless];
     [self makeKeyAndOrderFront:nil];
 }
 
@@ -287,8 +290,8 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
     self.x1.p = self.y1;
 
     self.z1 = [NSTimer scheduledTimerWithTimeInterval:0.5
-                                              repeats:YES
-                                                block:^(NSTimer * _Nonnull m2) {
+                                             repeats:YES
+                                               block:^(NSTimer * _Nonnull m2) {
         self.y1->e();
     }];
 
