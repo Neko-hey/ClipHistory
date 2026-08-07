@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClipHistory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#121212] text-slate-200 min-h-screen px-6 py-12 md:py-24 selection:bg-purple-500 selection:text-white">
+
+  <main class="max-w-2xl mx-auto space-y-16">
+
+    <section class="space-y-6">
+      <div class="flex items-center gap-4">
+        <img src="https://github.com/user-attachments/assets/0a0bf02e-95e6-4be6-b633-f18cb5c8c9b7" alt="ClipHistory Icon" class="w-16 h-16 rounded-2xl border border-white/10 shadow-lg object-cover">
+        <h1 class="text-4xl md:text-6xl font-semibold tracking-tight leading-snug">
+          ClipHistory
+        </h1>
+      </div>
+
+      <p class="text-slate-400 text-base md:text-lg leading-relaxed pt-2">
+        A lightweight clipboard history manager for macOS
+      </p>
+
+      <div class="pt-2 flex flex-wrap items-center gap-4">
+        <a href="https://github.com/Neko-hey/ClipHistory/releases"
+           class="px-5 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 font-mono text-xs transition flex items-center gap-2">
+          <span>Download v1.0.1 (.dmg)</span>
+        </a>
+        <a href="https://github.com/Neko-hey/ClipHistory" target="_blank" rel="noopener noreferrer"
+           class="px-5 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/20 text-slate-400 font-mono text-xs transition">
+          GitHub
+        </a>
+      </div>
+    </section>
+
+    <section class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3">
+      <h2 class="text-xs font-mono text-purple-400 tracking-widest uppercase">USAGE</h2>
+      <p class="text-sm font-mono text-slate-300 leading-relaxed">
+        Press <kbd class="px-1.5 py-0.5 text-xs bg-white/10 rounded border border-white/20 text-slate-200">⌘</kbd> + <kbd class="px-1.5 py-0.5 text-xs bg-white/10 rounded border border-white/20 text-slate-200">B</kbd> to choose and re-copy from your clipboard history
+      </p>
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-xs font-mono text-slate-500 tracking-widest uppercase">/ INSTALLATION & NOTES</h2>
+
+      <div class="space-y-4">
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3">
+          <h3 class="text-base font-medium text-slate-100">Installation</h3>
+          <ol class="list-decimal list-inside text-sm font-mono text-slate-400 space-y-2 leading-relaxed">
+            <li>Download the latest <span class="text-purple-300">ClipHistory.dmg</span> from the Releases page</li>
+            <li>Open the dmg and drag <span class="text-purple-300">ClipHistory.app</span> to <span class="text-purple-300">/Applications</span></li>
+          </ol>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3">
+          <h3 class="text-base font-medium text-slate-100">If a Warning Appears on First Launch</h3>
+          <p class="text-xs font-mono text-slate-400 leading-relaxed">
+            If macOS security (quarantine attribute) prevents the app from opening, run the following in Terminal:
+          </p>
+          <div class="p-3 rounded-lg bg-black/40 border border-white/5 font-mono text-xs text-purple-300 overflow-x-auto">
+            sudo xattr -cr /Applications/ClipHistory.app
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <p class="text-sm font-medium text-slate-300">Contact</p>
+        <a href="mailto:neko-hey@protonmail.com" class="text-xs font-mono text-slate-400 hover:text-purple-300 transition">
+          neko-hey@protonmail.com
+        </a>
+      </div>
+      <div class="flex space-x-5 text-sm font-mono text-slate-400">
+        <a href="https://github.com/Neko-hey" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition">GitHub</a>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
