@@ -1,13 +1,18 @@
 #!/bin/bash
 set -e
 
-APP_NAME="ClipHistory"
-BUILD_DIR="build"
-APP_DIR="${BUILD_DIR}/${APP_NAME}.app"
-DMG_NAME="${APP_NAME}.dmg"
-ICON_PNG="icon.png"
+if [ -f .env ]; then
+    set -a
+    source .env
+    set +a
+else
+    exit 1
+fi
 
-rm -rf "${BUILD_DIR}" "${DMG_NAME}"
+APP_DIR="${BUILD_DIR}/${APP_NAME}.app"
+DMG_STAGING="${BUILD_DIR}/dmg_staging"
+
+rm -rf "${BUILD_DIR}" "${DIST_DIR}/${DMG_NAME}" "${DIST_DIR}/${APP_NAME}.app"
 
 mkdir -p "${APP_DIR}/Contents/MacOS"
 mkdir -p "${APP_DIR}/Contents/Resources"
@@ -23,42 +28,38 @@ if [ -f "$ICON_PNG" ]; then
     sips -z 128 128   "$ICON_PNG" --out "${ICONSET_DIR}/icon_128x128.png"
     sips -z 256 256   "$ICON_PNG" --out "${ICONSET_DIR}/icon_128x128@2x.png"
     sips -z 256 256   "$ICON_PNG" --out "${ICONSET_DIR}/icon_256x256.png"
-    sips -z 512 512   "$ICON_PNG" --out "${ICONSET_DIR}/icon_256x256@2x.png"
     sips -z 512 512   "$ICON_PNG" --out "${ICONSET_DIR}/icon_512x512.png"
+    sips -z 512 512   "$ICON_PNG" --out "${ICONSET_DIR}/icon_512x512@2x.png"
     sips -z 1024 1024 "$ICON_PNG" --out "${ICONSET_DIR}/icon_512x512@2x.png"
 
-    iconutil -c icns "${ICONSET_DIR}" -o "${APP_DIR}/Contents/Resources/AppIcon.icns"
+    iconutil -c icns "${ICONSET_DIR}" -o "${APP_DIR}/Contents/Resources/${ICON_ICNS_NAME}.icns"
 fi
 
-clang++ -O2 -std=c++17 \
-    -framework Cocoa \
-    -framework Foundation \
-    main.mm -o "${APP_DIR}/Contents/MacOS/${APP_NAME}"
+$CXX $CXXFLAGS $FRAMEWORKS "$SRC_FILE" -o "${APP_DIR}/Contents/MacOS/${EXECUTABLE_NAME}"
 
 cat <<EOF > "${APP_DIR}/Contents/Info.plist"
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.plist">
 <plist version="1.0">
 <dict>
     <key>CFBundleExecutable</key>
-    <string>${APP_NAME}</string>
+    <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIdentifier</key>
-    <string>online.neko-hey.${APP_NAME}</string>
+    <string>${APP_BUNDLE_ID}</string>
     <key>CFBundleName</key>
     <string>${APP_NAME}</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.1</string>
+    <string>${APP_VERSION}</string>
     <key>CFBundleIconFile</key>
-    <string>AppIcon</string>
+    <string>${ICON_ICNS_NAME}</string>
     <key>LSUIElement</key>
     <false/>
 </dict>
 </plist>
 EOF
 
-DMG_STAGING="build/dmg_staging"
 mkdir -p "${DMG_STAGING}"
 cp -R "${APP_DIR}" "${DMG_STAGING}/"
 ln -s /Applications "${DMG_STAGING}/Applications"
@@ -67,4 +68,7 @@ hdiutil create -volname "${APP_NAME}" \
                -srcfolder "${DMG_STAGING}" \
                -ov -format UDZO "${DMG_NAME}"
 
+mkdir -p "${DIST_DIR}"
+mv "${APP_DIR}" "${DIST_DIR}/"
+mv "${DMG_NAME}" "${DIST_DIR}/"
 rm -rf "${BUILD_DIR}"
