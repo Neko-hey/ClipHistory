@@ -100,8 +100,22 @@ public:
         [t addSubview:_r];
         
         _s = 0;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidResignKey:)
+                                                     name:NSWindowDidResignKeyNotification
+                                                   object:self];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification {
+    [self orderOut:nil];
 }
 
 - (BOOL)canBecomeKeyWindow {
