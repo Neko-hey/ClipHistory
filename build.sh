@@ -28,8 +28,8 @@ if [ -f "$ICON_PNG" ]; then
     sips -z 128 128   "$ICON_PNG" --out "${ICONSET_DIR}/icon_128x128.png"
     sips -z 256 256   "$ICON_PNG" --out "${ICONSET_DIR}/icon_128x128@2x.png"
     sips -z 256 256   "$ICON_PNG" --out "${ICONSET_DIR}/icon_256x256.png"
+    sips -z 512 512   "$ICON_PNG" --out "${ICONSET_DIR}/icon_256x256@2x.png"
     sips -z 512 512   "$ICON_PNG" --out "${ICONSET_DIR}/icon_512x512.png"
-    sips -z 512 512   "$ICON_PNG" --out "${ICONSET_DIR}/icon_512x512@2x.png"
     sips -z 1024 1024 "$ICON_PNG" --out "${ICONSET_DIR}/icon_512x512@2x.png"
 
     iconutil -c icns "${ICONSET_DIR}" -o "${APP_DIR}/Contents/Resources/${ICON_ICNS_NAME}.icns"
