@@ -397,6 +397,9 @@ public:
 @property (nonatomic, assign) a* y1;
 @property (nonatomic, strong) NSTimer* z1;
 @property (nonatomic, assign) CFMachPortRef a2;
+@property (nonatomic, strong) NSStatusItem* statusItem;
+
+- (void)showHistory;
 @end
  
 CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
@@ -431,8 +434,18 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
 @implementation w1
  
 - (void)applicationDidFinishLaunching:(NSNotification *)k2 {
-    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
  
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+    NSImage *statusIcon = [NSImage imageNamed:NSImageNameMenuOnStateTemplate];
+    [self.statusItem.button setImage:statusIcon];
+    
+    NSMenu *menu = [[NSMenu alloc] init];
+    [menu addItemWithTitle:@"ClipHistoryを表示" action:@selector(showHistory) keyEquivalent:@""];
+    [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:@"終了" action:@selector(terminate:) keyEquivalent:@"q"];
+    self.statusItem.menu = menu;
+
     self.y1 = new a();
  
     NSDictionary *l2 = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
@@ -463,6 +476,10 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
         CGEventTapEnable(self.a2, true);
         CFRelease(o2);
     }
+}
+
+- (void)showHistory {
+    [self.x1 g1];
 }
  
 - (void)applicationWillTerminate:(NSNotification *)p2 {
