@@ -435,16 +435,6 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
  
 - (void)applicationDidFinishLaunching:(NSNotification *)k2 {
     [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
- 
-    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
-    NSImage *statusIcon = [NSImage imageNamed:NSImageNameMenuOnStateTemplate];
-    [self.statusItem.button setImage:statusIcon];
-    
-    NSMenu *menu = [[NSMenu alloc] init];
-    [menu addItemWithTitle:@"ClipHistoryを表示" action:@selector(showHistory) keyEquivalent:@""];
-    [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:@"終了" action:@selector(terminate:) keyEquivalent:@"q"];
-    self.statusItem.menu = menu;
 
     self.y1 = new a();
  
