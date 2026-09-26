@@ -1,4 +1,4 @@
-<img width="128" height="128" alt="icon" src="https://github.com/user-attachments/assets/0a0bf02e-95e6-4be6-b633-f18cb5c8c9b7"/>
+<img width="128" height="128" alt="icon" src="https://github.com/Neko-hey/ClipHistory/blob/main/src/icon.png?raw=true"/>
 
 # ClipHistory
 
