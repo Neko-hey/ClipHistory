@@ -29,7 +29,7 @@ public:
         if (h && [h length] > 0) {
             const char* i = [h UTF8String];
             if (!i) return false;
-            
+
             std::string j = i;
             if (j.empty()) return false;
 
@@ -49,7 +49,7 @@ public:
     }
 
     const std::vector<std::string>& l() const { return b; }
-    
+
     std::string m(size_t n) const {
         if (n < b.size()) return b[n];
         return "";
@@ -87,18 +87,18 @@ public:
 
         _r = [[NSScrollView alloc] initWithFrame:NSMakeRect(5, 5, 240, 190)];
         _q = [[NSTableView alloc] initWithFrame:_r.bounds];
-        
+
         NSTableColumn* u = [[NSTableColumn alloc] initWithIdentifier:@"v"];
         u.width = 230;
         [_q addTableColumn:u];
         [_q setHeaderView:nil];
         [_q setDelegate:self];
         [_q setDataSource:self];
-        
+
         _r.documentView = _q;
         _r.hasVerticalScroller = YES;
         [t addSubview:_r];
-        
+
         _s = 0;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -139,7 +139,7 @@ public:
         [b1 setSelectable:NO];
         [b1 setLineBreakMode:NSLineBreakByTruncatingTail];
     }
-    
+
     if (self.p->l().empty()) {
         b1.stringValue = @"(履歴がありません)";
         b1.textColor = [NSColor disabledControlTextColor];
@@ -172,11 +172,11 @@ public:
 
     AXUIElementRef j1 = AXUIElementCreateSystemWide();
     AXUIElementRef k1 = NULL;
-    
+
     if (AXUIElementCopyAttributeValue(j1, kAXFocusedApplicationAttribute, (CFTypeRef*)&k1) == kAXErrorSuccess) {
         AXUIElementRef l1 = NULL;
         if (AXUIElementCopyAttributeValue(k1, kAXFocusedUIElementAttribute, (CFTypeRef*)&l1) == kAXErrorSuccess) {
-            
+
             AXValueRef m1 = NULL;
             if (AXUIElementCopyAttributeValue(l1, (CFStringRef)kAXSelectedTextBoundsAttribute, (CFTypeRef*)&m1) == kAXErrorSuccess) {
                 CGRect n1;
@@ -209,8 +209,8 @@ public:
 }
 
 - (void)s1 {
-    if (self.p->l().empty() || 
-        self.s < 0 || 
+    if (self.p->l().empty() ||
+        self.s < 0 ||
         self.s >= self.p->l().size()) {
         [self orderOut:nil];
         return;
@@ -275,9 +275,9 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
         CGEventFlags h2 = CGEventGetFlags(e2);
         int64_t i2 = CGEventGetIntegerValueField(e2, kCGKeyboardEventKeycode);
 
-        bool j2 = (h2 & kCGEventFlagMaskCommand) && 
-                  !(h2 & kCGEventFlagMaskAlternate) && 
-                  !(h2 & kCGEventFlagMaskControl) && 
+        bool j2 = (h2 & kCGEventFlagMaskCommand) &&
+                  !(h2 & kCGEventFlagMaskAlternate) &&
+                  !(h2 & kCGEventFlagMaskControl) &&
                   !(h2 & kCGEventFlagMaskShift);
 
         if (j2 && i2 == 11) {
