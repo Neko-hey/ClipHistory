@@ -247,7 +247,7 @@ public:
  
     if (self.p->l().empty()) {
         b4.h3.stringValue = @"";
-        b4.textField.stringValue = @"(履歴がありません)";
+        b4.textField.stringValue = @"(No History)";
         b4.textField.textColor = [NSColor disabledControlTextColor];
     } else {
         b4.h3.stringValue = [NSString stringWithFormat:@"%ld", (long)(a1 + 1)];
@@ -436,11 +436,25 @@ CGEventRef b2(CGEventTapProxy c2, CGEventType d2, CGEventRef e2, void *f2) {
 - (void)applicationDidFinishLaunching:(NSNotification *)k2 {
     [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
 
+    Boolean isTrusted = AXIsProcessTrusted();
+
+    if (!isTrusted) {
+        NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
+        AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
+
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Accessibility Permission Required";
+        alert.informativeText = @"To use this app, please grant permission in System Settings > Privacy & Security > Accessibility";
+        [alert addButtonWithTitle:@"Quit"];
+        
+        [alert runModal];
+
+        [NSApp terminate:nil];
+        exit(0);
+        return;
+    }
+
     self.y1 = new a();
- 
-    NSDictionary *l2 = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
-    AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)l2);
- 
     self.x1 = [[o alloc] init];
     self.x1.p = self.y1;
  
