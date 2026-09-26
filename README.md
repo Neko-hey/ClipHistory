@@ -10,6 +10,8 @@ ClipHistory is a lightweight clipboard history manager for macOS
 * Lightweight and simple design
 * Press ⌘ + B to display the menu
 
+<img width="512" height="512" alt="sample" src="https://github.com/Neko-hey/ClipHistory/blob/main/image/sample.png?raw=true"/>
+
 ## Installation
 
 1. Download the latest `ClipHistory.dmg` from the [Releases](https://github.com/Neko-hey/ClipHistory/releases) page
