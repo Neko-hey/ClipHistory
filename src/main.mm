@@ -12,7 +12,7 @@
 class a {
 private:
     std::vector<std::string> b;
-    static constexpr size_t c = 10;
+    static constexpr size_t c = 9;
     NSInteger d = -1;
  
 public:
